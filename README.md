@@ -14,16 +14,19 @@ Built as a meaningful extension of the existing Marinela Hair Design production 
 1. Open the [live concierge](https://www.marinelahairdesign.com/concierge) in ChatGPT’s WebMCP-capable in-app browser or Chrome 149+ with WebMCP enabled.
 2. Confirm that the page exposes exactly five tools, then ask:
 
-   > I want a subtle warm balayage with a budget up to €200. I prefer Mia. Check the next three open working days, help me choose the right service, and prepare one verified time for my confirmation.
+   > I want a soft, natural-looking balayage and can spend up to €200. I prefer Mia. Please check the salon’s current service and price information, then show verified times for the next three open working days. Do not prepare or book anything yet.
 
-3. Let the agent inspect the salon, service, price and availability tools and open the prepared booking review.
-4. Stop before entering personal details or clicking the final booking button. The evaluation should not create a real salon appointment.
+3. After the agent returns real availability, choose one of those exact slots and ask:
 
-Expected result: the agent uses live structured data, explains a suitable service and price, checks current availability and opens the first-party form with only service, stylist, date and time prepared. Contact details, privacy acknowledgement, Turnstile and the final confirmation remain empty and under human control.
+   > Prepare that verified Mia time for my confirmation. Do not create the appointment.
+
+4. Let the agent open the prepared booking review, then stop before entering personal details or clicking the final booking button. The evaluation should not create a real salon appointment.
+
+Expected result: the agent uses live structured data, identifies the bookable `Balayage color` service, presents the separate informational `Balayage` price variants while noting that the bookable service remains price on request, checks current availability, and opens the first-party form with only service, stylist, date, and time prepared. Contact details, privacy acknowledgement, Turnstile, and the final confirmation remain empty and under human control.
 
 ## Why WebMCP
 
-Salon clients often know the result they want but not the professional service name. Conventional booking interfaces make them choose first and understand later. WebMCP lets a compatible agent connect natural-language intent to current, typed website capabilities while the website remains the source of truth.
+Salon clients often know the result they want but not the professional service name. Conventional booking interfaces make them choose first and understand later. WebMCP lets a compatible agent connect natural-language intent to current, schema-defined website capabilities while the website remains the source of truth.
 
 The site registers exactly five tools:
 
@@ -31,7 +34,7 @@ The site registers exactly five tools:
 |---|---|---|
 | `get_salon_information` | Read public salon details, hours and advice boundaries | None |
 | `find_bookable_services` | Search active, bookable services | None |
-| `search_price_list` | Search current dashboard-managed price rows | None |
+| `search_price_list` | Search current public price rows | None |
 | `check_appointment_availability` | Check one service and up to seven dates | None |
 | `prepare_booking_for_confirmation` | Recheck a slot and open the visible review form | UI navigation only |
 
