@@ -1180,7 +1180,9 @@ test("registers exactly five narrowly scoped WebMCP tools on public salon routes
   assert.match(tools, /maximum: 6/);
   assert.match(tools, /allSlots\.slice\(0, 3\)/);
   assert.match(tools, /registration\.abort\(\)/);
-  assert.match(tools, /options\.signal\.addEventListener\("abort"/);
+  assert.match(tools, /type ToolExecutionOptions = \{ signal\?: AbortSignal \}/);
+  assert.match(tools, /!options\.signal\?\.aborted/);
+  assert.match(tools, /options\.signal\?\.addEventListener\("abort"/);
   assert.match(layout, /<WebMcpSiteTools \/>/);
 });
 
