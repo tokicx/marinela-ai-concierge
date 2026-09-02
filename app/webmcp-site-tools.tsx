@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-type ToolExecutionOptions = { signal: AbortSignal };
+type ToolExecutionOptions = { signal?: AbortSignal };
 type SiteTool = {
   name: string;
   title?: string;
@@ -151,7 +151,7 @@ function takeWithinCharacterBudget<T>(items: T[], maxCharacters: number) {
   return selected;
 }
 
-async function readCatalog(signal: AbortSignal): Promise<PublicCatalog> {
+async function readCatalog(signal?: AbortSignal): Promise<PublicCatalog> {
   const response = await fetch("/api/concierge/catalog", {
     cache: "no-store",
     headers: { Accept: "application/json" },
@@ -178,7 +178,7 @@ export default function WebMcpSiteTools() {
     const registration = new AbortController();
     let cachedCatalog: { value: PublicCatalog; expiresAt: number } | null = null;
 
-    async function currentCatalog(signal: AbortSignal) {
+    async function currentCatalog(signal?: AbortSignal) {
       if (cachedCatalog && cachedCatalog.expiresAt > Date.now()) return cachedCatalog.value;
       const value = await readCatalog(signal);
       if (!registration.signal.aborted) {
@@ -586,7 +586,7 @@ export default function WebMcpSiteTools() {
             reviewUrl.searchParams.set("izvor", "webmcp");
             const navigation = window.setTimeout(() => {
               if (
-                !options.signal.aborted &&
+                !options.signal?.aborted &&
                 !registration.signal.aborted &&
                 publicToolPaths.has(window.location.pathname)
               ) {
@@ -594,7 +594,7 @@ export default function WebMcpSiteTools() {
               }
             }, 700);
             const cancelNavigation = () => window.clearTimeout(navigation);
-            options.signal.addEventListener("abort", cancelNavigation, { once: true });
+            options.signal?.addEventListener("abort", cancelNavigation, { once: true });
             registration.signal.addEventListener("abort", cancelNavigation, { once: true });
             return {
               status: "awaiting_human_confirmation",
