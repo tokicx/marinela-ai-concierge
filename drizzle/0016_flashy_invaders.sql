@@ -1,0 +1,1 @@
+ALTER TABLE `notification_jobs` ADD `payload_snapshot` text;
