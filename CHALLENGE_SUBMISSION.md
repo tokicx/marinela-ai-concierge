@@ -22,18 +22,18 @@ This is a strong WebMCP use case because it combines conversational discovery wi
 
 The salon brand, public website and appointment workflow existed before this WebMCP implementation. During the submission period, the new production experience was meaningfully extended with these five WebMCP tools, the dedicated Concierge experience, human-confirmation safety boundary, documentation, and tests. The dated before/after record in [DEVELOPMENT.md](DEVELOPMENT.md) distinguishes the WebMCP work while this public source snapshot remains safely squashed and anonymized. The pattern can be reused by salons and other appointment-based small businesses that want agent assistance without surrendering privacy or transaction control.
 
-## Video storyboard — 2:38
+## Final public demo — 2:16
 
-| Time | Screen | English narration |
+| Approx. time | Screen | English narration focus |
 |---|---|---|
-| 0:00–0:14 | Homepage, then `/concierge` | “Salon clients often know the look they want, but not the exact service they should book. Marinela AI Concierge turns that uncertainty into grounded guidance and a safe booking handoff.” |
-| 0:14–0:28 | Agent browser discovers five tools | “We extended a real salon website with exactly five narrowly scoped WebMCP tools. They expose useful business capabilities without exposing private customer data.” |
-| 0:28–0:55 | Ask for a soft, natural-looking balayage up to €200; show live production WebMCP service and price results | “The client speaks naturally. The agent retrieves salon information, finds the bookable Balayage color service, and checks the public price list separately. The service is offered by Mia and lasts three hours; the current public Balayage variants are €100, €140, €170 and €200, while the bookable service remains price on request.” |
-| 0:55–1:15 | Show the one bookable service and the related informational price row | “Service and price remain distinct, so the agent does not invent a bookable ID or guarantee a total from an informational price row.” |
-| 1:15–1:35 | Show Mia and three exact dates in a live production WebMCP availability call | “The availability tool checks the salon’s real scheduling rules, existing appointments and connected calendars. A failed verification is never mislabeled as a fully booked day.” |
-| 1:35–1:53 | Show the successful production `prepare_booking_for_confirmation` result and visible review | “The production tool rechecks the selected slot and opens the first-party form with only service, stylist, date, and time prepared. It returns `bookingCreated: false`.” |
-| 1:53–2:18 | Show empty PII fields, unchecked privacy-notice acknowledgement, Turnstile and final button; do not submit | “The agent stops here. Personal information, acknowledgement of the privacy notice, the anti-bot check and the final confirmation remain human actions. This demo deliberately creates no real appointment.” |
-| 2:18–2:38 | Show architecture and safety summary | “Marinela AI Concierge demonstrates a reusable path from ambiguous human intent to verified business data and a safe transaction boundary.” |
+| 0:00–0:12 | Homepage, then `/concierge` | The client knows the desired result but not necessarily the correct service; the concierge converts natural-language intent into grounded guidance. |
+| 0:12–0:26 | Agent browser discovers five tools | The real salon website exposes exactly five narrowly scoped WebMCP tools without exposing private customer data. |
+| 0:26–0:48 | Natural balayage request; live service and price results | The agent finds the bookable service and reads the current public price information from separate structured sources rather than guessing. |
+| 0:48–1:03 | Bookable service and related informational price rows | Service identity and price information remain distinct, preventing invented bookable IDs or unsupported total-price guarantees. |
+| 1:03–1:21 | Mia availability lookup | The availability tool checks actual scheduling rules, existing appointments and connected calendars, and fails closed when a slot cannot be verified. |
+| 1:21–1:38 | `prepare_booking_for_confirmation` and visible review | The selected slot is rechecked and only the non-sensitive choices are prepared; the result explicitly keeps `bookingCreated: false`. |
+| 1:38–2:03 | Empty personal-data fields, privacy acknowledgement, Turnstile and final button | The agent stops before the consequential action. The human enters personal information, accepts the privacy notice, completes the anti-bot check and confirms personally. |
+| 2:03–2:16 | Architecture and safety summary | The project demonstrates a reusable path from ambiguous intent to verified business data and a human-controlled transaction boundary. |
 
 Recording rules:
 
